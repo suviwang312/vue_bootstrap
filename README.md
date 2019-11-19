@@ -1,21 +1,47 @@
 # first
 
-> A Vue.js project
+首先不会使用vue脚手架请参考   
+[vue脚手架安装教程](https://blog.csdn.net/weixin_41056807/article/details/90239795)
 
-## Build Setup
+### 引入jQuery
+和正常使用bootstrap一样，在引入bootstrap之前要引入jQuery插件。
 
-``` bash
-# install dependencies
-npm install
+输入指令：`npm install jquery --save -dev`
 
-# serve with hot reload at localhost:8080
-npm run dev
+出现以上为jQuery安装成功。
 
-# build for production with minification
-npm run build
+安装jQuery成功之后，点击：build ->webpack.base.conf.js进行配置。
 
-# build for production and view the bundle analyzer report
-npm run build --report
+ - 在function resolve (dir){…}函数的上面添加：`const webpack = require('webpack');`
+ - 在`resolve: {…}`的上面添加：
+ 
+
+```
+plugins: [
+    new webpack.optimize.CommonsChunkPlugin('common.js'),
+    new webpack.ProvidePlugin({
+      jQuery: "jquery",
+      $: "jquery"
+    })
+  ],
+```
+- 在main.js中添加：`import $ from 'jquery'`
+
+使用jQuery
+
+```js
+$(function () {
+/*js代码*/
+ })
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### 引入Bootstrap
+引入指令： `npm install bootstrap3 -s`
+
+
+在main.js中加入：
+
+```
+import 'bootstrap3/dist/css/bootstrap.min.css'
+import 'bootstrap3/dist/js/bootstrap.min.js'
+```
